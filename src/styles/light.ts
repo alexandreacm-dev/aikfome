@@ -10,18 +10,20 @@ const lightTheme = {
         },
         bg: {
             primary: "#7b1fa2",
-            secondary: "#f6f6f6",
+            secondary: "#ffffff",
             brand_opacity: "#5D6CC6",
-            bg_primary: "rgba(80, 8, 120, 1)"
+            bg_primary: "rgba(80, 8, 120, 1)",
+            banner: "#ede9e9",
         },
         button: {
             primary: "#00A296"
         },
         text: {
             primary: "#262626",
-            secondary: "#757575",
+            secondary: "#7b1fa2",
             textWhite: "#FFF",
             textBlack: "#000",
+            link: "#FF0000",
         },
     },
     fonts: {

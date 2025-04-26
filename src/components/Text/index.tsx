@@ -4,7 +4,14 @@ import styles from "./styles";
 
 type ThemedTextProps = TextProps & {
   children: React.ReactNode;
-  type?: "default" | "defaultSemiBold" | "title" | "subTitle" | "link";
+  type?:
+    | "default"
+    | "defaultSemiBold"
+    | "title"
+    | "subTitle"
+    | "link"
+    | "location"
+    | "linkFavorite";
   style?: StyleProp<TextStyle>;
 };
 
@@ -22,6 +29,9 @@ const Text: React.FC<ThemedTextProps> = ({
         type == "title" ? styles.title : undefined,
         type == "subTitle" ? styles.subTitle : undefined,
         type == "link" ? styles.link : undefined,
+        type == "location" ? styles.location : undefined,
+        type == "location" ? styles.location : undefined,
+        type == "linkFavorite" ? styles.linFavorite : undefined,
         style,
       ]}
       {...props}

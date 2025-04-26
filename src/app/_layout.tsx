@@ -12,8 +12,8 @@ import { StatusBar } from "expo-status-bar";
 SplashScreen.preventAutoHideAsync();
 
 const InitialLayout = () => {
-  const { isLoaded, isSignedIn } = useAuth();
   const { fontLoaded, error } = useGoogleFonts();
+  const { isLoaded, isSignedIn } = useAuth();
   const segments = useSegments();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const InitialLayout = () => {
     if (isSignedIn && !inAuthGroup) {
       router.replace("/(auth)/home");
     } else if (!isSignedIn) {
-      router.replace("/(public)/sign-in");
+      router.replace("/");
     }
   }, [isSignedIn]);
 

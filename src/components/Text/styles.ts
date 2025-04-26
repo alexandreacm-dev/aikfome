@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
     color: lightTheme.colors.text.primary,
     fontFamily: lightTheme.fonts.body,
   },
+  location: {
+    fontSize: 16,
+    color: lightTheme.colors.text.primary,
+    fontFamily: lightTheme.fonts.body,
+  },
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
@@ -26,12 +31,18 @@ const styles = StyleSheet.create({
     color: lightTheme.colors.text.primary,
   },
   link: {
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 20,
     color: lightTheme.colors.text.textBlack,
     fontFamily: lightTheme.fonts.title,
     fontStyle: 'italic',
     textDecorationLine: 'underline',
+    fontWeight: 'bold'
+  },
+  linFavorite: {
+    fontSize: 14,
+    color: lightTheme.colors.text.link,
+    fontFamily: lightTheme.fonts.subTitle,
     fontWeight: 'bold'
   },
 });

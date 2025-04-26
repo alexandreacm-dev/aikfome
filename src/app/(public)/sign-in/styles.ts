@@ -1,9 +1,6 @@
+import { ThemeProp } from '@/utils';
 import { PressableProps, TextInputProps } from 'react-native';
-import styled, { css, DefaultTheme } from 'styled-components/native';
-
-type ThemeProp = {
-   theme: DefaultTheme;
-}
+import styled from 'styled-components/native';
 
 const Container = styled.View`
    flex: 1;
@@ -15,6 +12,7 @@ const ContainerLogo = styled.View`
    flex: 1;
    justify-content: center;
    align-items: center;
+    /* background-color:  ${({ theme }: ThemeProp) => theme.colors.bg.bg_primary}; */
 `;
 
 const Logo = styled.View`
@@ -26,7 +24,7 @@ const Logo = styled.View`
 `;
 
 const ContainerForm = styled.View`
-   flex: 3;
+   flex: 2;
    padding: 20px;
    border-top-left-radius: 20px;
    border-top-right-radius: 20px;
@@ -51,7 +49,7 @@ const Input = styled.TextInput<TextInputProps>`
 
 const PressableButton = styled.Pressable<PressableProps>`
    width: 100%;
-   padding: 20px;
+   padding: 16px;
    border-radius: 50px;
    justify-content: center;
    align-items: center;
