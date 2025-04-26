@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleProp, TextProps, View, Text as RNText } from "react-native";
+import { StyleProp, Text as RNText, TextStyle, TextProps } from "react-native";
 import styles from "./styles";
 
 type ThemedTextProps = TextProps & {
   children: React.ReactNode;
-  type?: "default" | "defaultSemiBold" | "title" | "subTitle";
-  style?: StyleProp<TextProps>;
+  type?: "default" | "defaultSemiBold" | "title" | "subTitle" | "link";
+  style?: StyleProp<TextStyle>;
 };
 
 const Text: React.FC<ThemedTextProps> = ({
@@ -15,20 +15,19 @@ const Text: React.FC<ThemedTextProps> = ({
   ...props
 }) => {
   return (
-    <View>
-      <RNText
-        style={[
-          style,
-          type == "default" ? styles.default : undefined,
-          type == "defaultSemiBold" ? styles.defaultSemiBold : undefined,
-          type == "title" ? styles.title : undefined,
-          type == "subTitle" ? styles.subTitle : undefined,
-        ]}
-        {...props}
-      >
-        {children}
-      </RNText>
-    </View>
+    <RNText
+      style={[
+        type == "default" ? styles.default : undefined,
+        type == "defaultSemiBold" ? styles.defaultSemiBold : undefined,
+        type == "title" ? styles.title : undefined,
+        type == "subTitle" ? styles.subTitle : undefined,
+        type == "link" ? styles.link : undefined,
+        style,
+      ]}
+      {...props}
+    >
+      {children}
+    </RNText>
   );
 };
 

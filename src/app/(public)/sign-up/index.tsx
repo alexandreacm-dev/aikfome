@@ -1,16 +1,15 @@
-import Text from "@/components/Text";
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-const Login: React.FC = () => {
+const SignUp: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text type="default">Nascemos no interior do Paraná,</Text>
+      <Text>SignUp</Text>
     </View>
   );
 };
 
-export default Login;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { router, Slot, useSegments } from "expo-router";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import { ClerkProvider } from "@clerk/clerk-expo";
@@ -7,6 +7,7 @@ import { useAuth } from "@clerk/clerk-expo";
 import { useGoogleFonts } from "@/hooks/useGoogleFonts";
 import * as SplashScreen from "expo-splash-screen";
 import ThemeProvider from "@/components/ThemeProvider";
+import { StatusBar } from "expo-status-bar";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -39,9 +40,10 @@ const InitialLayout = () => {
 
   return (
     <ThemeProvider>
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
         <Slot />
-      </SafeAreaView>
+      </View>
     </ThemeProvider>
   );
 };

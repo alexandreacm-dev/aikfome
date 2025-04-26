@@ -11,6 +11,8 @@ const lightTheme = {
         bg: {
             primary: "#7b1fa2",
             secondary: "#f6f6f6",
+            brand_opacity: "#5D6CC6",
+            bg_primary: "rgba(80, 8, 120, 1)"
         },
         button: {
             primary: "#00A296"

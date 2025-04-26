@@ -1,18 +1,20 @@
 import React from "react";
 import { Stack } from "expo-router";
+import theme from "@/styles";
 
 export default function PublicRoutesLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
         headerStyle: {
-          backgroundColor: "#7b1fa2",
+          backgroundColor: theme.colors.bg.bg_primary,
         },
-        headerTintColor: "#FFF",
+        headerTintColor: theme.colors.bg.secondary,
       }}
     >
-      <Stack.Screen name="login" />
+      <Stack.Screen name="sign-in/index" options={{ headerTitle: "" }} />
+      <Stack.Screen name="sign-up/index" options={{ headerTitle: "SignUp" }} />
     </Stack>
   );
 }

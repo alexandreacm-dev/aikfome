@@ -25,6 +25,15 @@ const styles = StyleSheet.create({
     fontFamily: lightTheme.fonts.subTitle,
     color: lightTheme.colors.text.primary,
   },
+  link: {
+    fontSize: 18,
+    lineHeight: 20,
+    color: lightTheme.colors.text.textBlack,
+    fontFamily: lightTheme.fonts.title,
+    fontStyle: 'italic',
+    textDecorationLine: 'underline',
+    fontWeight: 'bold'
+  },
 });
 
 export default styles;
