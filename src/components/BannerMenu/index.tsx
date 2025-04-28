@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { Image } from "expo-image";
 import Text from "@/components/Text";
 
@@ -15,7 +15,7 @@ import * as S from "./styles";
 
 const BannerMenu: React.FC = () => {
   return (
-    <>
+    <S.Container>
       <S.ContainerBanner>
         <S.ContainerLeft>
           <Text type="default">Restaurantes</Text>
@@ -148,8 +148,8 @@ const BannerMenu: React.FC = () => {
           </Text>
         </S.CardContainer>
       </S.ContainerBannerBottom>
-    </>
+    </S.Container>
   );
 };
 
-export default memo(BannerMenu);
+export default BannerMenu;

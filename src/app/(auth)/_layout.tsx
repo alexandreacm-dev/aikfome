@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Stack } from "expo-router";
-import LogoutButton from "@/components/LogoutButton";
 import { useAuth } from "@clerk/clerk-expo";
 import theme from "@/styles";
-import HeaderLocation from "@/components/HeaderLocation";
+import CloseButton from "@/components/BackButton";
 
 export default function AuthRoutesLayout() {
   const { isSignedIn } = useAuth();
@@ -15,15 +14,28 @@ export default function AuthRoutesLayout() {
           backgroundColor: theme.colors.bg.primary,
         },
         headerTintColor: theme.colors.bg.secondary,
-        headerLeft: () => <HeaderLocation />,
-        headerRight: () => <LogoutButton />,
       }}
     >
-      <Stack.Screen name="home/index" redirect={!isSignedIn} />
       <Stack.Screen
-        name="store-details"
+        name="home/index"
+        options={{
+          headerTitle: "AIKFOME",
+        }}
+        redirect={!isSignedIn}
+      />
+      <Stack.Screen
+        name="details-store/index"
         options={{
           headerTitle: "",
+        }}
+        redirect={!isSignedIn}
+      />
+      <Stack.Screen
+        name="search-address/index"
+        options={{
+          headerTitle: "ENDEREÇO DE ENTREGA",
+          presentation: "modal",
+          headerLeft: () => <CloseButton />,
         }}
         redirect={!isSignedIn}
       />

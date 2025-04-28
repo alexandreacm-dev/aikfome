@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 const Container = styled.ScrollView`
   flex: 1;
   background-color: ${({ theme }: ThemeProp) => theme.colors.bg.secondary};
-  padding: 10px;
+  margin-top: 10px;
 `;
 
 const ContainerBanner = styled.View`
@@ -54,11 +54,11 @@ const StyledViewBanner = styled.View`
 `;
 
 export {
-    Container,
-    ContainerBanner,
-    ContainerLeft,
-    ContainerRight,
-    CardContainer,
-    ContainerBannerBottom,
-    StyledViewBanner
+  Container,
+  ContainerBanner,
+  ContainerLeft,
+  ContainerRight,
+  CardContainer,
+  ContainerBannerBottom,
+  StyledViewBanner
 };

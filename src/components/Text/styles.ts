@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
     fontFamily: lightTheme.fonts.body,
   },
   location: {
-    fontSize: 16,
+    fontSize: 14,
     color: lightTheme.colors.text.primary,
-    fontFamily: lightTheme.fonts.body,
+    fontFamily: lightTheme.fonts.title,
   },
   defaultSemiBold: {
     fontSize: 16,

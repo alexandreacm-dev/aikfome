@@ -1,10 +1,10 @@
 import { ThemeProp } from "@/utils";
 import styled from "styled-components/native";
 
-const Container = styled.ScrollView`
+const ScrollViewContainer = styled.ScrollView`
   flex: 1;
-  background-color: ${({ theme }: ThemeProp) => theme.colors.bg.secondary};
   padding: 10px;
+  background-color: ${({ theme }: ThemeProp) => theme.colors.bg.secondary};
 `;
 
 const ContainerFavorites = styled.View`
@@ -23,4 +23,4 @@ const TopContainer = styled.View`
 `;
 
 
-export { Container, ContainerFavorites, TopContainer };
+export { ScrollViewContainer, ContainerFavorites, TopContainer };

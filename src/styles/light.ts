@@ -14,6 +14,9 @@ const lightTheme = {
             brand_opacity: "#5D6CC6",
             bg_primary: "rgba(80, 8, 120, 1)",
             banner: "#ede9e9",
+            location: "rgba(196, 196, 196, 0.174)",
+            warning: '#ffc800',
+            error: '#b32f0a'
         },
         button: {
             primary: "#00A296"

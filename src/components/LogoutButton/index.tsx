@@ -1,14 +1,10 @@
 import React from "react";
 import { Pressable } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { useAuth, useClerk } from "@clerk/clerk-expo";
+import { useClerk } from "@clerk/clerk-expo";
+import theme from "@/styles";
 
-// import { Container } from './styles';
-type Props = {
-  onPress?: () => void;
-};
-
-const LogOutButton: React.FC<Props> = ({ onPress }) => {
+const LogOutButton: React.FC = () => {
   const { signOut } = useClerk();
 
   async function handleSignOut() {
@@ -21,7 +17,11 @@ const LogOutButton: React.FC<Props> = ({ onPress }) => {
 
   return (
     <Pressable onPress={handleSignOut}>
-      <MaterialIcons name="exit-to-app" size={24} color="white" />
+      <MaterialIcons
+        name="exit-to-app"
+        size={26}
+        color={theme.colors.text.textWhite}
+      />
     </Pressable>
   );
 };

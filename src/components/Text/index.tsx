@@ -30,7 +30,6 @@ const Text: React.FC<ThemedTextProps> = ({
         type == "subTitle" ? styles.subTitle : undefined,
         type == "link" ? styles.link : undefined,
         type == "location" ? styles.location : undefined,
-        type == "location" ? styles.location : undefined,
         type == "linkFavorite" ? styles.linFavorite : undefined,
         style,
       ]}

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 import { router, Slot, useSegments } from "expo-router";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import { ClerkProvider } from "@clerk/clerk-expo";
@@ -8,8 +8,11 @@ import { useGoogleFonts } from "@/hooks/useGoogleFonts";
 import * as SplashScreen from "expo-splash-screen";
 import ThemeProvider from "@/components/ThemeProvider";
 import { StatusBar } from "expo-status-bar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 SplashScreen.preventAutoHideAsync();
+
+const queryClient = new QueryClient();
 
 const InitialLayout = () => {
   const { fontLoaded, error } = useGoogleFonts();
@@ -39,12 +42,14 @@ const InitialLayout = () => {
   }
 
   return (
-    <ThemeProvider>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-        <Slot />
-      </View>
-    </ThemeProvider>
+    <>
+      <StatusBar style="auto" />
+      <ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <Slot />
+        </QueryClientProvider>
+      </ThemeProvider>
+    </>
   );
 };
 
