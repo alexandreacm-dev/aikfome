@@ -39,6 +39,15 @@ export default function AuthRoutesLayout() {
         }}
         redirect={!isSignedIn}
       />
+      <Stack.Screen
+        name="favorites/index"
+        options={{
+          headerTitle: "FAVORITOS",
+          presentation: "modal",
+          headerLeft: () => <CloseButton />,
+        }}
+        redirect={!isSignedIn}
+      />
     </Stack>
   );
 }

@@ -9,6 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import ThemeProvider from "@/components/ThemeProvider";
 import { StatusBar } from "expo-status-bar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import LocationProvider from "@/contexts/location.context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -44,11 +45,13 @@ const InitialLayout = () => {
   return (
     <>
       <StatusBar style="auto" />
-      <ThemeProvider>
-        <QueryClientProvider client={queryClient}>
-          <Slot />
-        </QueryClientProvider>
-      </ThemeProvider>
+      <LocationProvider>
+        <ThemeProvider>
+          <QueryClientProvider client={queryClient}>
+            <Slot />
+          </QueryClientProvider>
+        </ThemeProvider>
+      </LocationProvider>
     </>
   );
 };

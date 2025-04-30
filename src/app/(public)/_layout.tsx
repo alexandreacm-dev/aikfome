@@ -7,7 +7,7 @@ export default function PublicRoutesLayout() {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: theme.colors.bg.bg_primary,
+          backgroundColor: theme.colors.bg.primary,
         },
         headerTintColor: theme.colors.bg.secondary,
       }}

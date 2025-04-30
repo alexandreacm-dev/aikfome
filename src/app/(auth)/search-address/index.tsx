@@ -13,9 +13,12 @@ import EmptyComponent from "@/components/EmptyComponent";
 
 import Theme from "@/styles";
 import * as S from "./styles";
+import { router } from "expo-router";
+import { useLocation } from "@/contexts/location.context";
 
 const SearchAddress: React.FC = () => {
-  const [stateId, setCityId] = useState<number>(0);
+  const { setLocationName, setCityId } = useLocation();
+  const [stateId, setStateId] = useState<number>(0);
   const {
     states,
     isError,
@@ -29,7 +32,7 @@ const SearchAddress: React.FC = () => {
 
   const renderItem = ({ item }: { item: IState }) => (
     <>
-      <S.Card onPress={() => setCityId(item.id)}>
+      <S.Card onPress={() => setStateId(item.id)}>
         <S.CardName>
           <Text type="default">{item.name}</Text>
         </S.CardName>
@@ -54,13 +57,19 @@ const SearchAddress: React.FC = () => {
             numColumns={2}
             keyExtractor={(item: ICity) => item.id.toString()}
             renderItem={({ item }: { item: ICity }) => (
-              <RenderCities item={item} />
+              <RenderCities item={item} onGoToCity={handleCity} />
             )}
           />
         </S.ContainerFlatList>
       )}
     </>
   );
+
+  const handleCity = (locationName: string, cityId: number) => {
+    setLocationName(locationName);
+    setCityId(cityId);
+    router.dismissAll();
+  };
 
   return (
     <S.Container>

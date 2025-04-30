@@ -7,8 +7,11 @@ import lightTheme from "@/styles";
 import * as S from "./styles";
 import { router } from "expo-router";
 import LogOutButton from "../LogoutButton";
+import { useLocation } from "@/contexts/location.context";
 
 const HeaderLocation: React.FC = () => {
+  const { locationName } = useLocation();
+
   const handleSearchLocation = () => {
     router.navigate("/(auth)/search-address");
   };
@@ -24,7 +27,7 @@ const HeaderLocation: React.FC = () => {
           type="location"
           style={{ color: lightTheme.colors.bg.secondary, marginLeft: 6 }}
         >
-          Itapema - SC
+          {locationName || "Escolha o endereço"}
         </Text>
         <MaterialIcons
           name="keyboard-arrow-right"

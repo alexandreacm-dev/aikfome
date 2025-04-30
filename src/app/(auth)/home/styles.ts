@@ -1,7 +1,13 @@
 import { ThemeProp } from "@/utils";
 import styled from "styled-components/native";
 
-const ScrollViewContainer = styled.ScrollView`
+const Container = styled.View`
+  flex: 1;
+`;
+
+const ScrollViewContainer = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false
+})`
   flex: 1;
   padding: 10px;
   background-color: ${({ theme }: ThemeProp) => theme.colors.bg.secondary};
@@ -22,5 +28,78 @@ const TopContainer = styled.View`
   justify-content: space-between;
 `;
 
+const ContainerStore = styled.View`
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 5px;
+`;
 
-export { ScrollViewContainer, ContainerFavorites, TopContainer };
+const CardStore = styled.View`
+  width: 100%;
+  margin-bottom:15px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const ImageContainer = styled.View`
+  width: 20%;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const ContentView = styled.View`
+  width: 80%;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const ContainerStarView = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ContainerStar = styled.View`
+  width: 20%;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+`;
+
+const ContainerTime = styled.View`
+  width: 50%;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const ContainerFavorite = styled.View`
+  width: 30%;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const StyledImage = styled.Image`
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+`;
+
+export {
+  ScrollViewContainer,
+  ContainerFavorites,
+  TopContainer,
+  Container,
+  ContainerStore,
+  CardStore,
+  ImageContainer,
+  ContentView,
+  StyledImage,
+  ContainerStarView,
+  ContainerStar,
+  ContainerTime,
+  ContainerFavorite
+};
