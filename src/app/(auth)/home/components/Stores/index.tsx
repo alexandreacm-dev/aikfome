@@ -1,20 +1,18 @@
-import React, { useCallback, useEffect } from "react";
-// import Text from "@/components/Text";
+import React, { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchStores } from "@/services/products.service";
+import { fetchStores } from "@/services/stores.service";
 import { useLocation } from "@/contexts/location.context";
 import Loading from "@/components/Loading";
 import ErrorMessage from "@/components/ErrorMessage";
 import Text from "@/components/Text";
 
-import * as S from "../../styles";
 import { storageService } from "@/storage/storage.service";
-import { key_CityId, key_favorites, key_location } from "@/constants";
-import { storage } from "@/storage/mmKV.storage";
+import { key_favorites } from "@/constants";
 import StoreItem from "../StoreItem";
+import * as S from "../../styles";
 
 const Stores: React.FC = () => {
-  const { cityId, setCityId, favorites, setFavorites } = useLocation();
+  const { cityId, favorites, setFavorites } = useLocation();
   const {
     data: stores,
     isError,
@@ -27,25 +25,20 @@ const Stores: React.FC = () => {
     queryFn: () => fetchStores(cityId),
   });
 
-  useEffect(() => {
-    async function loadingStorage() {
-      try {
-        const cityId = await storageService.getItem<number>(key_CityId);
-
-        if (cityId !== null) {
-          setCityId(cityId);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    loadingStorage();
-  }, []);
+  function isFavorite(storeId: number): boolean {
+    return favorites.filter((store) => store.id == storeId).length > 0;
+  }
 
   const handleFavorite = useCallback(
     (store: IStore) => {
-      setFavorites([...favorites, store]);
+      if (isFavorite(store.id)) {
+        const allFavorites = favorites.filter(
+          (favoriteCompany) => favoriteCompany.id !== store.id
+        );
+        setFavorites(allFavorites);
+      } else {
+        setFavorites([...favorites, store]);
+      }
       storageService.setItem<IStore[]>(key_favorites, favorites);
     },
     [favorites]

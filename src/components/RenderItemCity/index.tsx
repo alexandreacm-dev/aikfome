@@ -7,7 +7,7 @@ type ItemProps = {
   onGoToCity: (locationName: string, cityId: number) => void;
 };
 
-const RenderCities: React.FC<ItemProps> = ({ item, onGoToCity }) => {
+const RenderItemCity: React.FC<ItemProps> = ({ item, onGoToCity }) => {
   const handleCityState = () => {
     onGoToCity(`${item.name}-${item.state.uf}`, item.id);
   };
@@ -19,4 +19,4 @@ const RenderCities: React.FC<ItemProps> = ({ item, onGoToCity }) => {
   );
 };
 
-export default RenderCities;
+export default RenderItemCity;

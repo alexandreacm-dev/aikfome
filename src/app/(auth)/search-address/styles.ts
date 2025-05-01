@@ -37,7 +37,7 @@ const ContainerFlatList = styled.View`
   margin-bottom: 10px;
 `;
 
-const StyledFlatList = styled.FlatList``;
+const StyledFlatListCity = styled.FlatList``;
 
 
 export {
@@ -46,5 +46,5 @@ export {
   CardName,
   CardIcon,
   ContainerFlatList,
-  StyledFlatList
+  StyledFlatListCity
 };

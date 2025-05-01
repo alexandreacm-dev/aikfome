@@ -1,8 +1,9 @@
 import React from "react";
-import * as S from "@/app/(auth)/home/styles";
 import Text from "@/components/Text";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { useLocation } from "@/contexts/location.context";
+import * as S from "@/app/(auth)/home/styles";
 
 type ItemProps = {
   store: IStore;
@@ -15,6 +16,8 @@ const StoreItem: React.FC<ItemProps> = ({
   handleFavorite,
   onlyLogo,
 }) => {
+  const { favorites } = useLocation();
+
   if (onlyLogo) {
     return (
       <S.StyleOnLyLogo>
@@ -27,6 +30,10 @@ const StoreItem: React.FC<ItemProps> = ({
         />
       </S.StyleOnLyLogo>
     );
+  }
+
+  function isFavorite(storeId: number): boolean {
+    return favorites.filter((store) => store.id == storeId).length > 0;
   }
 
   return (
@@ -55,7 +62,11 @@ const StoreItem: React.FC<ItemProps> = ({
             <Text type="defaultSemiBold">{store.time_to_delivery} min</Text>
           </S.ContainerTime>
           <S.PressableFavorite onPress={() => handleFavorite(store)}>
-            <MaterialIcons name="favorite-outline" size={24} color="black" />
+            <MaterialIcons
+              name={isFavorite(store.id) ? "favorite" : "favorite-outline"}
+              size={24}
+              color="black"
+            />
           </S.PressableFavorite>
         </S.ContainerStarView>
       </S.ContentView>

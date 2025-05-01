@@ -5,9 +5,9 @@ import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import Text from "@/components/Text";
 
 import ErrorMessage from "@/components/ErrorMessage";
-import useViewModel from "@/hooks/useViewModel";
+import useLocationViewModel from "@/hooks/useLocationViewModel";
 
-import RenderCities from "@/components/RenderCities";
+import RenderItemCity from "@/components/RenderItemCity";
 import Loading from "@/components/Loading";
 import EmptyComponent from "@/components/EmptyComponent";
 import { useLocation } from "@/contexts/location.context";
@@ -22,14 +22,16 @@ const SearchAddress: React.FC = () => {
   const [stateId, setStateId] = useState<number>(0);
   const {
     states,
-    isError,
-    error,
-    isLoading,
-    isFetched,
+    isErrorStates,
+    errorState,
+    isLoadingStates,
+    isFetchedStates,
     cities,
     isFetchedCity,
     isLoadingCity,
-  } = useViewModel(stateId);
+    isErrorCity,
+    ErrorCity,
+  } = useLocationViewModel(stateId);
 
   const renderItem = ({ item }: { item: IState }) => (
     <>
@@ -50,7 +52,7 @@ const SearchAddress: React.FC = () => {
 
       {item.id == stateId && isFetchedCity && (
         <S.ContainerFlatList>
-          <S.StyledFlatList
+          <S.StyledFlatListCity
             data={cities}
             ListEmptyComponent={
               <EmptyComponent message="Nenhuma cidade encontrada" />
@@ -58,7 +60,7 @@ const SearchAddress: React.FC = () => {
             numColumns={2}
             keyExtractor={(item: ICity) => item.id.toString()}
             renderItem={({ item }: { item: ICity }) => (
-              <RenderCities item={item} onGoToCity={handleCity} />
+              <RenderItemCity item={item} onGoToCity={handleCity} />
             )}
           />
         </S.ContainerFlatList>
@@ -76,11 +78,15 @@ const SearchAddress: React.FC = () => {
 
   return (
     <S.Container>
-      <Loading isLoading={isLoading && !isFetched} />
+      <Loading isLoading={isLoadingStates && !isFetchedStates} />
 
-      {isError && !isLoading ? (
-        <ErrorMessage message={error} />
-      ) : (
+      {isErrorCity && !isLoadingCity && <ErrorMessage message={ErrorCity} />}
+
+      {isErrorStates && !isLoadingStates && (
+        <ErrorMessage message={errorState} />
+      )}
+
+      {states && (
         <FlatList
           showsVerticalScrollIndicator={false}
           data={states}
