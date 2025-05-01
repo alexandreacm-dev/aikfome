@@ -10,10 +10,13 @@ import ThemeProvider from "@/components/ThemeProvider";
 import { StatusBar } from "expo-status-bar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LocationProvider from "@/contexts/location.context";
+import { initializeStorage } from "@/storage/storage.service";
+import { mmkvStorage } from "@/storage/mmKV.storage";
 
 SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient();
+initializeStorage(mmkvStorage);
 
 const InitialLayout = () => {
   const { fontLoaded, error } = useGoogleFonts();

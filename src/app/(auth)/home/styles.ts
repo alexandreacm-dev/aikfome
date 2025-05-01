@@ -1,6 +1,10 @@
 import { ThemeProp } from "@/utils";
 import styled from "styled-components/native";
 
+type ImageProp = {
+  borderRadius: number;
+}
+
 const Container = styled.View`
   flex: 1;
 `;
@@ -13,16 +17,15 @@ const ScrollViewContainer = styled.ScrollView.attrs({
   background-color: ${({ theme }: ThemeProp) => theme.colors.bg.secondary};
 `;
 
-const ContainerFavorites = styled.View`
+const ContainerHeaderFavorites = styled.View`
   flex: 1;
   flex-direction: row;
-  background-color: ${({ theme }: ThemeProp) => theme.colors.bg.banner};
-  padding: 10px;
+  padding: 5px;
   margin-top: 40px;
   border-radius: 10px;
 `;
 
-const TopContainer = styled.View`
+const HeaderFavorites = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -76,22 +79,39 @@ const ContainerTime = styled.View`
   align-items: flex-start;
 `;
 
-const ContainerFavorite = styled.View`
+const PressableFavorite = styled.Pressable`
   width: 30%;
   justify-content: center;
   align-items: flex-start;
 `;
 
-const StyledImage = styled.Image`
+const StyledImage = styled.Image<ImageProp>`
   width: 60px;
   height: 60px;
-  border-radius: 10px;
+  border-radius: ${({ borderRadius }: { borderRadius: number }) => borderRadius ? `${borderRadius}px` : '10px'};
+`;
+
+const FavoritesScrollView = styled.ScrollView.attrs({
+  horizontal: true,
+  showsHorizontalScrollIndicator: false
+})`
+  flex: 1;
+  padding: 5px;
+  margin-bottom: 10px
+`;
+
+const StyleOnLyLogo = styled.View`
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
 `;
 
 export {
   ScrollViewContainer,
-  ContainerFavorites,
-  TopContainer,
+  ContainerHeaderFavorites,
+  HeaderFavorites,
   Container,
   ContainerStore,
   CardStore,
@@ -101,5 +121,7 @@ export {
   ContainerStarView,
   ContainerStar,
   ContainerTime,
-  ContainerFavorite
+  PressableFavorite,
+  FavoritesScrollView,
+  StyleOnLyLogo
 };

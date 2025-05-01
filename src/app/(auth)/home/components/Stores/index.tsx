@@ -1,64 +1,55 @@
-import React from "react";
-import { FlatList, Image, ScrollView } from "react-native";
+import React, { useCallback, useEffect } from "react";
 // import Text from "@/components/Text";
 import { useQuery } from "@tanstack/react-query";
-import { fetchProducts } from "@/services/products.service";
+import { fetchStores } from "@/services/products.service";
 import { useLocation } from "@/contexts/location.context";
 import Loading from "@/components/Loading";
 import ErrorMessage from "@/components/ErrorMessage";
 import Text from "@/components/Text";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 import * as S from "../../styles";
+import { storageService } from "@/storage/storage.service";
+import { key_CityId, key_favorites, key_location } from "@/constants";
+import { storage } from "@/storage/mmKV.storage";
+import StoreItem from "../StoreItem";
 
 const Stores: React.FC = () => {
-  const { cityId } = useLocation();
+  const { cityId, setCityId, favorites, setFavorites } = useLocation();
   const {
-    data: products,
+    data: stores,
     isError,
     error,
     isLoading,
     isFetched,
   } = useQuery({
-    queryKey: ["products", cityId],
+    queryKey: ["stores", cityId],
     enabled: !!cityId,
-    queryFn: () => fetchProducts(cityId),
+    queryFn: () => fetchStores(cityId),
   });
 
-  const renderItem = (product: IProduct) => {
-    return (
-      <S.CardStore key={product.id}>
-        <S.ImageContainer>
-          <S.StyledImage
-            source={{ uri: product.virtual_avatar.default || "" }}
-            width={60}
-            height={60}
-            resizeMode="contain"
-          />
-        </S.ImageContainer>
-        <S.ContentView>
-          <Text type="default" style={{ width: 250 }} numberOfLines={2}>
-            {product.name}
-          </Text>
-          <S.ContainerStarView>
-            <S.ContainerStar>
-              <FontAwesome name="star" size={22} color="#FFB300" />
-              <Text type="default" style={{ marginLeft: 2, fontSize: 16 }}>
-                {product.ratings.average}
-              </Text>
-            </S.ContainerStar>
-            <S.ContainerTime>
-              <Text type="defaultSemiBold">{product.time_to_delivery} min</Text>
-            </S.ContainerTime>
-            <S.ContainerFavorite>
-              <MaterialIcons name="favorite-outline" size={24} color="black" />
-            </S.ContainerFavorite>
-          </S.ContainerStarView>
-        </S.ContentView>
-      </S.CardStore>
-    );
-  };
+  useEffect(() => {
+    async function loadingStorage() {
+      try {
+        const cityId = await storageService.getItem<number>(key_CityId);
+
+        if (cityId !== null) {
+          setCityId(cityId);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    loadingStorage();
+  }, []);
+
+  const handleFavorite = useCallback(
+    (store: IStore) => {
+      setFavorites([...favorites, store]);
+      storageService.setItem<IStore[]>(key_favorites, favorites);
+    },
+    [favorites]
+  );
 
   if (!cityId) {
     <ErrorMessage message="É necessário selecionar uma cidade." />;
@@ -77,7 +68,13 @@ const Stores: React.FC = () => {
               Lojas
             </Text>
           </S.ContainerStore>
-          {products?.map((product) => renderItem(product))}
+          {stores?.map((store) => (
+            <StoreItem
+              key={store.id}
+              store={store}
+              handleFavorite={handleFavorite}
+            />
+          ))}
         </>
       )}
     </S.Container>

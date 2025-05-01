@@ -10,6 +10,8 @@ type LocationContextProps = {
   setLocationName: React.Dispatch<React.SetStateAction<string>>;
   cityId: number;
   setCityId: React.Dispatch<React.SetStateAction<number>>;
+  favorites: IStore[];
+  setFavorites: React.Dispatch<React.SetStateAction<IStore[]>>;
 };
 
 const LocationContext = createContext<LocationContextProps>(
@@ -23,10 +25,18 @@ const LocationProvider: React.FC<ProviderProps> = ({
 }: ProviderProps) => {
   const [locationName, setLocationName] = useState("");
   const [cityId, setCityId] = useState(0);
+  const [favorites, setFavorites] = useState<IStore[]>([]);
 
   return (
     <LocationContext.Provider
-      value={{ locationName, setLocationName, cityId, setCityId }}
+      value={{
+        locationName,
+        setLocationName,
+        cityId,
+        setCityId,
+        favorites,
+        setFavorites,
+      }}
     >
       {children}
     </LocationContext.Provider>

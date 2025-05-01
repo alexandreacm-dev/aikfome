@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FlatList } from "react-native";
-
+import { router } from "expo-router";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import Text from "@/components/Text";
 
@@ -10,11 +10,12 @@ import useViewModel from "@/hooks/useViewModel";
 import RenderCities from "@/components/RenderCities";
 import Loading from "@/components/Loading";
 import EmptyComponent from "@/components/EmptyComponent";
+import { useLocation } from "@/contexts/location.context";
 
 import Theme from "@/styles";
 import * as S from "./styles";
-import { router } from "expo-router";
-import { useLocation } from "@/contexts/location.context";
+import { storageService } from "@/storage/storage.service";
+import { key_CityId, key_location } from "@/constants";
 
 const SearchAddress: React.FC = () => {
   const { setLocationName, setCityId } = useLocation();
@@ -66,6 +67,8 @@ const SearchAddress: React.FC = () => {
   );
 
   const handleCity = (locationName: string, cityId: number) => {
+    storageService.setItem(key_location, locationName);
+    storageService.setItem(key_CityId, cityId);
     setLocationName(locationName);
     setCityId(cityId);
     router.dismissAll();
