@@ -89,8 +89,7 @@ yarn test
 
 ```bash
   SRC
-   ├──
-      App
+   ├── App
        ├── (auth)
        ├── (public)
     ├── assets
