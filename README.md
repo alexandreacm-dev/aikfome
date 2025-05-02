@@ -8,10 +8,6 @@
 
 [![Watch the video](.github/icLogo.png)](https://github.com/user-attachments/assets/2464ffcd-866a-4dc9-9e74-d839444606ef)
 
-<p align="center">
-https://github.com/user-attachments/assets/2464ffcd-866a-4dc9-9e74-d839444606ef
-</p>
-
 ![cover](.github/cover.png?style=flat)
 
 ## 💻 Project
