@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Pressable, View } from "react-native";
+import React from "react";
+import { Pressable } from "react-native";
 import { router } from "expo-router";
 import { useLocation } from "@/contexts/location.context";
 import * as S from "@/app/(auth)/home/styles";
@@ -25,14 +25,9 @@ const Favorites: React.FC = () => {
         </S.HeaderFavorites>
       </S.ContainerHeaderFavorites>
       <S.FavoritesScrollView>
-        {favorites.map((favorite) => {
+        {favorites.map((favoriteStore) => {
           return (
-            <StoreItem
-              onlyLogo
-              key={favorite.id}
-              store={favorite}
-              handleFavorite={() => {}}
-            />
+            <StoreItem onlyLogo key={favoriteStore.id} store={favoriteStore} />
           );
         })}
       </S.FavoritesScrollView>

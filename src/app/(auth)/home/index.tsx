@@ -17,14 +17,14 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <S.Container>
       <HeaderLocation />
       <S.ScrollViewContainer>
         <BannerMenu />
         <Favorites />
         <Stores />
       </S.ScrollViewContainer>
-    </>
+    </S.Container>
   );
 };
 

@@ -1,10 +1,15 @@
 import { ThemeProp } from "@/utils";
 import styled from "styled-components/native";
 
+type ImageProp = {
+    borderRadius: number;
+}
+
 const Container = styled.View`
   flex: 1;
-  padding: 12px;
 `;
 
 
-export { Container }
+export {
+    Container
+}

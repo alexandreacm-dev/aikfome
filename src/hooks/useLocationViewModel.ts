@@ -22,6 +22,7 @@ function useLocationViewModel(stateId: number) {
     } = useQuery({
         queryKey: ["cities", { stateId }],
         queryFn: () => getCities(stateId),
+        enabled: !!stateId
     });
 
     return {

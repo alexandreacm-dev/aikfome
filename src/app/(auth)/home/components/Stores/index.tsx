@@ -10,6 +10,8 @@ import { storageService } from "@/storage/storage.service";
 import { key_favorites } from "@/constants";
 import StoreItem from "../StoreItem";
 import * as S from "../../styles";
+import { isFavorite } from "@/utils";
+import { IStore } from "@/models";
 
 const Stores: React.FC = () => {
   const { cityId, favorites, setFavorites } = useLocation();
@@ -25,13 +27,9 @@ const Stores: React.FC = () => {
     queryFn: () => fetchStores(cityId),
   });
 
-  function isFavorite(storeId: number): boolean {
-    return favorites.filter((store) => store.id == storeId).length > 0;
-  }
-
   const handleFavorite = useCallback(
     (store: IStore) => {
-      if (isFavorite(store.id)) {
+      if (isFavorite(favorites, store.id)) {
         const allFavorites = favorites.filter(
           (favoriteCompany) => favoriteCompany.id !== store.id
         );

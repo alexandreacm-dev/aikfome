@@ -1,4 +1,5 @@
 import { key_CityId, key_favorites, key_location } from "@/constants";
+import { IStore } from "@/models";
 import { storage } from "@/storage/mmKV.storage";
 import { storageService } from "@/storage/storage.service";
 import React, { useContext, useEffect, useState } from "react";
@@ -31,26 +32,27 @@ const LocationProvider: React.FC<ProviderProps> = ({
   const [favorites, setFavorites] = useState<IStore[]>([]);
 
   useEffect(() => {
-    storage.clearAll();
+    // storage.clearAll();
 
     async function loadingFavorites() {
       try {
         const localFavorites = await storageService.getItem<IStore[]>(
           key_favorites
         );
-        const cityId = await storageService.getItem<number>(key_CityId);
-
-        const locationStateCity = await storageService.getItem<string>(
-          key_location
-        );
 
         if (localFavorites !== null) {
           setFavorites(localFavorites);
         }
 
+        const cityId = await storageService.getItem<number>(key_CityId);
+
         if (cityId !== null) {
           setCityId(cityId);
         }
+
+        const locationStateCity = await storageService.getItem<string>(
+          key_location
+        );
 
         if (locationStateCity !== null) {
           setLocationName(locationStateCity);

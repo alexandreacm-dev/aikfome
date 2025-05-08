@@ -13,7 +13,7 @@ const ScrollViewContainer = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false
 })`
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   background-color: ${({ theme }: ThemeProp) => theme.colors.bg.secondary};
 `;
 
@@ -40,7 +40,7 @@ const ContainerStore = styled.View`
   padding-left: 5px;
 `;
 
-const CardStore = styled.View`
+const CardStorePressable = styled.Pressable`
   width: 100%;
   margin-bottom:15px;
   flex-direction: row;
@@ -82,7 +82,7 @@ const ContainerTime = styled.View`
 const PressableFavorite = styled.Pressable`
   width: 30%;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-end;
 `;
 
 const StyledImage = styled.Image<ImageProp>`
@@ -100,7 +100,7 @@ const FavoritesScrollView = styled.ScrollView.attrs({
   margin-bottom: 10px
 `;
 
-const StyleOnLyLogo = styled.View`
+const PressableOnLyLogo = styled.Pressable`
   width: 60px;
   height: 60px;
   justify-content: center;
@@ -114,7 +114,7 @@ export {
   HeaderFavorites,
   Container,
   ContainerStore,
-  CardStore,
+  CardStorePressable,
   ImageContainer,
   ContentView,
   StyledImage,
@@ -123,5 +123,5 @@ export {
   ContainerTime,
   PressableFavorite,
   FavoritesScrollView,
-  StyleOnLyLogo
+  PressableOnLyLogo
 };

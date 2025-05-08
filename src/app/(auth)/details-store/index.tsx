@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text } from "react-native";
+import Text from "@/components/Text";
+import * as S from "./styles";
 
 const StoreDetail: React.FC = () => {
   return (
-    <View>
-      <Text>Profile</Text>
-    </View>
+    <S.Container>
+      <Text type="default">StoreDetail</Text>
+    </S.Container>
   );
 };
 

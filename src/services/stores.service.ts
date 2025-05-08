@@ -1,3 +1,4 @@
+import { IStore, IStores } from "@/models";
 import api from "./api.service";
 
 async function fetchStores(cityId: number): Promise<IStore[]> {

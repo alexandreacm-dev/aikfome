@@ -80,11 +80,11 @@ const SearchAddress: React.FC = () => {
     <S.Container>
       <Loading isLoading={isLoadingStates && !isFetchedStates} />
 
-      {isErrorCity && !isLoadingCity && <ErrorMessage message={ErrorCity} />}
-
       {isErrorStates && !isLoadingStates && (
         <ErrorMessage message={errorState} />
       )}
+
+      {isErrorCity && !isLoadingCity && <ErrorMessage message={ErrorCity} />}
 
       {states && (
         <FlatList

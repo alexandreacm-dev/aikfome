@@ -12,6 +12,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LocationProvider from "@/contexts/location.context";
 import { initializeStorage } from "@/storage/storage.service";
 import { mmkvStorage } from "@/storage/mmKV.storage";
+import StoreProvider from "@/contexts/store.context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -49,11 +50,13 @@ const InitialLayout = () => {
     <>
       <StatusBar style="auto" />
       <LocationProvider>
-        <ThemeProvider>
-          <QueryClientProvider client={queryClient}>
-            <Slot />
-          </QueryClientProvider>
-        </ThemeProvider>
+        <StoreProvider>
+          <ThemeProvider>
+            <QueryClientProvider client={queryClient}>
+              <Slot />
+            </QueryClientProvider>
+          </ThemeProvider>
+        </StoreProvider>
       </LocationProvider>
     </>
   );

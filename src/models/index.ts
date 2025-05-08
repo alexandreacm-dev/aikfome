@@ -44,7 +44,7 @@ type Ratings = {
     count: number;
 }
 
-interface IStore {
+export interface IStore {
     id: number;
     name: string;
     slug: string;
@@ -62,6 +62,6 @@ interface IStore {
 }
 
 
-interface IStores {
+export interface IStores {
     data: Array<IStore>;
 }

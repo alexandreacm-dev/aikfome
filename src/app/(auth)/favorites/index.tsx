@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { useLocation } from "@/contexts/location.context";
 import { storageService } from "@/storage/storage.service";
@@ -8,28 +8,25 @@ import { FlatList } from "react-native";
 
 import * as S from "./styles";
 import Text from "@/components/Text";
+import { isFavorite } from "@/utils";
 
 const Favorites: React.FC = () => {
   const { favorites, setFavorites } = useLocation();
 
-  useEffect(() => {
-    // console.log(storage.getAllKeys());
-    async function loadingStorage() {
-      try {
-        const localFavorites = await storageService.getItem<IStore[]>(
-          key_favorites
+  const handleFavorite = useCallback(
+    (store: IStore) => {
+      if (isFavorite(favorites, store.id)) {
+        const allFavorites = favorites.filter(
+          (favoriteCompany) => favoriteCompany.id !== store.id
         );
-
-        if (localFavorites !== null) {
-          setFavorites(localFavorites);
-        }
-      } catch (error) {
-        console.log(error);
+        setFavorites(allFavorites);
+      } else {
+        setFavorites([...favorites, store]);
       }
-    }
-
-    loadingStorage();
-  }, []);
+      storageService.setItem<IStore[]>(key_favorites, favorites);
+    },
+    [favorites]
+  );
 
   return (
     <S.Container>
@@ -38,7 +35,11 @@ const Favorites: React.FC = () => {
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
-          <StoreItem key={item.id} store={item} handleFavorite={() => {}} />
+          <StoreItem
+            key={item.id}
+            store={item}
+            handleFavorite={handleFavorite}
+          />
         )}
       />
     </S.Container>
