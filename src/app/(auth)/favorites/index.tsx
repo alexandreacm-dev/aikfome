@@ -9,6 +9,7 @@ import { FlatList } from "react-native";
 import * as S from "./styles";
 import Text from "@/components/Text";
 import { isFavorite } from "@/utils";
+import { IStore } from "@/models";
 
 const Favorites: React.FC = () => {
   const { favorites, setFavorites } = useLocation();

@@ -6,7 +6,7 @@ import { Link, useRouter } from "expo-router";
 import Text from "@/components/Text";
 
 import aikfomeLogo from "@/assets/images/aikfome-logo.svg";
-import logo from "@/assets/images/aikfome_logo.png";
+import logo from "@/assets/images/aikfome_novo_logo.png";
 import theme from "@/styles";
 import { MotiView } from "moti";
 
@@ -65,6 +65,7 @@ export default function SignIn() {
             style={{
               width: 150,
               height: 35,
+              marginTop: 50,
               tintColor: theme.colors.text.textWhite,
             }}
           />

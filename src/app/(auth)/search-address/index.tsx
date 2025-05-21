@@ -16,6 +16,7 @@ import Theme from "@/styles";
 import * as S from "./styles";
 import { storageService } from "@/storage/storage.service";
 import { key_CityId, key_location } from "@/constants";
+import { ICity, IState } from "@/models";
 
 const SearchAddress: React.FC = () => {
   const { setLocationName, setCityId } = useLocation();

@@ -4,14 +4,14 @@ type State = {
     uf: string;
 }
 
-interface IState {
+export interface IState {
     id: number;
     name: string;
     uf: string;
     region: string;
 }
 
-interface ICity {
+export interface ICity {
     id: number;
     name: string;
     state: State;

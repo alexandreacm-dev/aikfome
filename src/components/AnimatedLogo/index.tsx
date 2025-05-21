@@ -1,6 +1,6 @@
 import React from "react";
 import { MotiView } from "moti";
-import logo from "@/assets/images/aikfome_logo.png";
+import logo from "@/assets/images/aikfome_novo_logo.png";
 import { Image } from "expo-image";
 import * as S from "./styles";
 

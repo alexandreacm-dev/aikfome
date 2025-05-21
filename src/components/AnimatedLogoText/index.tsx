@@ -9,9 +9,10 @@ import Text from "../Text";
 
 type LogoTextProps = {
   source?: any;
+  text?: string;
 };
 
-const AnimatedLogoText: React.FC<LogoTextProps> = ({ source }) => {
+const AnimatedLogoText: React.FC<LogoTextProps> = ({ source, text }) => {
   const { width } = useWindowDimensions();
   return (
     <MotiView
@@ -38,7 +39,7 @@ const AnimatedLogoText: React.FC<LogoTextProps> = ({ source }) => {
           }}
         />
       ) : (
-        <Text type="defaultSemiBold">Animated Text</Text>
+        <Text type="title">{text}</Text>
       )}
     </MotiView>
   );
