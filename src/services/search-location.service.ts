@@ -1,3 +1,4 @@
+import { ICity, IState } from "@/models";
 import api from "./api.service";
 
 async function getStates(): Promise<IState[]> {

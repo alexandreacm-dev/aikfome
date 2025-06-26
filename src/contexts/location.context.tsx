@@ -24,9 +24,7 @@ const LocationContext = createContext<LocationContextProps>(
 
 export const useLocation = () => useContext(LocationContext);
 
-const LocationProvider: React.FC<ProviderProps> = ({
-  children,
-}: ProviderProps) => {
+const LocationProvider: React.FC<ProviderProps> = ({ children }) => {
   const [locationName, setLocationName] = useState<string | null>("");
   const [cityId, setCityId] = useState<number>(0);
   const [favorites, setFavorites] = useState<IStore[]>([]);
